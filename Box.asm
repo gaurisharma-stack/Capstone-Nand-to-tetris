@@ -1,0 +1,39 @@
+// Box.asm  (K = 8): rows 8-27, 16 px wide, at left edge
+(LOOP)
+    @KBD
+    D=M
+    @BLACK
+    D;JNE
+    @color
+    M=0
+    @DRAW
+    0;JMP
+(BLACK)
+    @color
+    M=-1
+(DRAW)
+    @16640
+    D=A
+    @addr
+    M=D
+    @20
+    D=A
+    @count
+    M=D
+(ROW)
+    @color
+    D=M
+    @addr
+    A=M
+    M=D
+    @32
+    D=A
+    @addr
+    M=D+M
+    @count
+    M=M-1
+    D=M
+    @ROW
+    D;JGT
+    @LOOP
+    0;JMP
